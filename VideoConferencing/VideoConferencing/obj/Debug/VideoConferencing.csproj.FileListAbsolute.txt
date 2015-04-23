@@ -1,0 +1,10 @@
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\VideoConferencing.exe.config
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\VideoConferencing.exe
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\VideoConferencing.pdb
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.csprojResolveAssemblyReference.cache
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Properties.Resources.resources
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.csproj.GenerateResource.Cache
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.exe
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.pdb
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Main_Form.resources
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Login_Form.resources
