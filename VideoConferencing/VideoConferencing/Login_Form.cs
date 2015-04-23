@@ -16,5 +16,34 @@ namespace VideoConferencing
         {
             InitializeComponent();
         }
+        
+        //
+        // used to close the Login form
+        //
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //
+        // used to check the username and pass
+        // also used to login to the system
+        //
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (comboBox_Login_UserName.Text=="user1"&& textBox_Login_Pass.Text=="1234")
+            {
+                MessageBox.Show("Signed In As : user 1");
+            }
+            else if (comboBox_Login_UserName.Text=="user2"&& textBox_Login_Pass.Text=="1234")
+            {
+                MessageBox.Show("Signed In As : user 2");
+            }
+            else
+            {
+                MessageBox.Show("Wrong details entered...!\n Check your username or/and password again");
+            }
+
+        }
     }
 }
