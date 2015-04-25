@@ -117,7 +117,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel_Login;
-        private System.Windows.Forms.ComboBox comboBox_Login_UserName;
+        public System.Windows.Forms.ComboBox comboBox_Login_UserName;
         private System.Windows.Forms.TextBox textBox_Login_Pass;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;

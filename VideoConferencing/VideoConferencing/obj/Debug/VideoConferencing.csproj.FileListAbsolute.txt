@@ -8,3 +8,4 @@ C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\V
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.pdb
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Main_Form.resources
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Login_Form.resources
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.PracticeForm.resources

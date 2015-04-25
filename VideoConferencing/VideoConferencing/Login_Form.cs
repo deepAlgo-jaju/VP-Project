@@ -10,8 +10,11 @@ using System.Windows.Forms;
 
 namespace VideoConferencing
 {
+     
     public partial class Login_Form : Form
     {
+        //public string loggedUser;
+
         public Login_Form()
         {
             InitializeComponent();
@@ -34,10 +37,12 @@ namespace VideoConferencing
             if (comboBox_Login_UserName.Text=="user1"&& textBox_Login_Pass.Text=="1234")
             {
                 MessageBox.Show("Signed In As : user 1");
+               
             }
             else if (comboBox_Login_UserName.Text=="user2"&& textBox_Login_Pass.Text=="1234")
             {
                 MessageBox.Show("Signed In As : user 2");
+                
             }
             else
             {
