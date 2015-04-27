@@ -246,7 +246,7 @@
             // 
             this.addToolStripMenuItem.Image = global::VideoConferencing.Properties.Resources.contacts;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
@@ -254,7 +254,7 @@
             // 
             this.viewToolStripMenuItem.Image = global::VideoConferencing.Properties.Resources.myspace;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
@@ -262,7 +262,7 @@
             // 
             this.deleteToolStripMenuItem.Image = global::VideoConferencing.Properties.Resources.Falcon_pro_for_twitter;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
