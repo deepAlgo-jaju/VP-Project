@@ -32,6 +32,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\DLL Folder\AFroge\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls">
+      <HintPath>..\DLL Folder\AFroge\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>..\DLL Folder\AFroge\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>..\DLL Folder\AFroge\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectX.Capture">
+      <HintPath>..\DLL Folder\DirectX\DirectX.Capture.dll</HintPath>
+    </Reference>
+    <Reference Include="DShowNET">
+      <HintPath>..\DLL Folder\DirectX\DShowNET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
