@@ -1,0 +1,16 @@
+-------------------------
+panels
+-------------------------
+
+  TabControl Right side Panel
+
+    	TabPage Menu, ToolStripMenuItem Contacts, ToolStripMenu SubItem Add
+    	------->    panel_tabPage_Menu_Add
+
+	TabPage Menu, ToolStripMenuItem Contacts, ToolStripMenu SubItem View
+	------->    panel_tabPage_Menu_View
+
+	TabPage Menu, ToolStripMenuItem Contacts, ToolStripMenu SubItem Add
+    	------->    panel_tabPage_Menu_Delete
+	
+	
