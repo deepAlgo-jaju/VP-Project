@@ -92,7 +92,10 @@ namespace VideoConferencing
         private void button1_Click(object sender, EventArgs e)
         {
             filterDevice = new Filters();
+            //foreach (Filters device in filterDevice)
+            //{
 
+            //}
             showVideo(cameraDeviceNo);
         }
     }

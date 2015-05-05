@@ -54,6 +54,10 @@
             this.contactUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suggesstionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_CallMenu = new System.Windows.Forms.Panel();
+            this.panel_CallMenu_host = new System.Windows.Forms.Panel();
+            this.bt_call_panel_CallMenu = new System.Windows.Forms.Button();
+            this.bt_disconnect_panel_CallMenu = new System.Windows.Forms.Button();
+            this.panel_CallMenu_remote = new System.Windows.Forms.Panel();
             this.panel_VideoChat.SuspendLayout();
             this.tc_contactsDetails.SuspendLayout();
             this.tabPage_Menu.SuspendLayout();
@@ -63,6 +67,7 @@
             this.menuStrip1.SuspendLayout();
             this.tabPage_Help.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.panel_CallMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_VideoChat
@@ -106,7 +111,7 @@
             this.panel_tabPage_Menu_Delete.Controls.Add(this.label3);
             this.panel_tabPage_Menu_Delete.Controls.Add(this.cb_panel_tabPage_Menu_Contact_Delete);
             this.panel_tabPage_Menu_Delete.Controls.Add(this.bt_panel_tabPage_Menu_Contacts_Delete);
-            this.panel_tabPage_Menu_Delete.Location = new System.Drawing.Point(3, 61);
+            this.panel_tabPage_Menu_Delete.Location = new System.Drawing.Point(3, 62);
             this.panel_tabPage_Menu_Delete.Name = "panel_tabPage_Menu_Delete";
             this.panel_tabPage_Menu_Delete.Size = new System.Drawing.Size(188, 132);
             this.panel_tabPage_Menu_Delete.TabIndex = 3;
@@ -179,6 +184,7 @@
             this.bt_panel_tabPage_Menu_Contacts_View.TabIndex = 0;
             this.bt_panel_tabPage_Menu_Contacts_View.Text = "View";
             this.bt_panel_tabPage_Menu_Contacts_View.UseVisualStyleBackColor = true;
+            this.bt_panel_tabPage_Menu_Contacts_View.Click += new System.EventHandler(this.bt_panel_tabPage_Menu_Contacts_View_Click);
             // 
             // panel_tabPage_Menu_Add
             // 
@@ -246,7 +252,7 @@
             // 
             this.addToolStripMenuItem.Image = global::VideoConferencing.Properties.Resources.contacts;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
@@ -254,7 +260,7 @@
             // 
             this.viewToolStripMenuItem.Image = global::VideoConferencing.Properties.Resources.myspace;
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
@@ -262,7 +268,7 @@
             // 
             this.deleteToolStripMenuItem.Image = global::VideoConferencing.Properties.Resources.Falcon_pro_for_twitter;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -305,10 +311,49 @@
             // 
             this.panel_CallMenu.BackColor = System.Drawing.SystemColors.Control;
             this.panel_CallMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_CallMenu.Controls.Add(this.panel_CallMenu_remote);
+            this.panel_CallMenu.Controls.Add(this.bt_disconnect_panel_CallMenu);
+            this.panel_CallMenu.Controls.Add(this.bt_call_panel_CallMenu);
+            this.panel_CallMenu.Controls.Add(this.panel_CallMenu_host);
             this.panel_CallMenu.Location = new System.Drawing.Point(209, 6);
             this.panel_CallMenu.Name = "panel_CallMenu";
             this.panel_CallMenu.Size = new System.Drawing.Size(463, 391);
             this.panel_CallMenu.TabIndex = 1;
+            this.panel_CallMenu.Visible = false;
+            // 
+            // panel_CallMenu_host
+            // 
+            this.panel_CallMenu_host.Location = new System.Drawing.Point(263, 241);
+            this.panel_CallMenu_host.Name = "panel_CallMenu_host";
+            this.panel_CallMenu_host.Size = new System.Drawing.Size(180, 113);
+            this.panel_CallMenu_host.TabIndex = 0;
+            // 
+            // bt_call_panel_CallMenu
+            // 
+            this.bt_call_panel_CallMenu.Location = new System.Drawing.Point(271, 360);
+            this.bt_call_panel_CallMenu.Name = "bt_call_panel_CallMenu";
+            this.bt_call_panel_CallMenu.Size = new System.Drawing.Size(75, 26);
+            this.bt_call_panel_CallMenu.TabIndex = 1;
+            this.bt_call_panel_CallMenu.Text = "Call";
+            this.bt_call_panel_CallMenu.UseVisualStyleBackColor = true;
+            this.bt_call_panel_CallMenu.Click += new System.EventHandler(this.bt_call_panel_CallMenu_Click);
+            // 
+            // bt_disconnect_panel_CallMenu
+            // 
+            this.bt_disconnect_panel_CallMenu.Location = new System.Drawing.Point(361, 359);
+            this.bt_disconnect_panel_CallMenu.Name = "bt_disconnect_panel_CallMenu";
+            this.bt_disconnect_panel_CallMenu.Size = new System.Drawing.Size(75, 26);
+            this.bt_disconnect_panel_CallMenu.TabIndex = 2;
+            this.bt_disconnect_panel_CallMenu.Text = "Disconnect";
+            this.bt_disconnect_panel_CallMenu.UseVisualStyleBackColor = true;
+            this.bt_disconnect_panel_CallMenu.Click += new System.EventHandler(this.bt_disconnect_panel_CallMenu_Click);
+            // 
+            // panel_CallMenu_remote
+            // 
+            this.panel_CallMenu_remote.Location = new System.Drawing.Point(9, 5);
+            this.panel_CallMenu_remote.Name = "panel_CallMenu_remote";
+            this.panel_CallMenu_remote.Size = new System.Drawing.Size(434, 230);
+            this.panel_CallMenu_remote.TabIndex = 3;
             // 
             // Main_Form
             // 
@@ -324,6 +369,7 @@
             this.Name = "Main_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Video Conferencing";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_Form_FormClosed);
             this.panel_VideoChat.ResumeLayout(false);
             this.tc_contactsDetails.ResumeLayout(false);
             this.tabPage_Menu.ResumeLayout(false);
@@ -340,6 +386,7 @@
             this.tabPage_Help.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.panel_CallMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -371,6 +418,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cb_panel_tabPage_Menu_Contact_Delete;
         private System.Windows.Forms.Button bt_panel_tabPage_Menu_Contacts_Delete;
+        private System.Windows.Forms.Panel panel_CallMenu_host;
+        private System.Windows.Forms.Button bt_disconnect_panel_CallMenu;
+        private System.Windows.Forms.Button bt_call_panel_CallMenu;
+        private System.Windows.Forms.Panel panel_CallMenu_remote;
     }
 }
 
