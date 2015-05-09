@@ -38,11 +38,12 @@ namespace VideoConferencing
         Capture camCapture = null;
         Filters filterDevice = null;
         int cameraDeviceNo;
+        private bool videoRunning;
 
         public Main_Form()
         {
             InitializeComponent();
-
+            cb_panel_tabPage_Menu_Contact_View.Items.Add("User1");
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace VideoConferencing
             camCapture.PreviewWindow = panel_CallMenu_host;
             //camCapture
             camCapture.Start();
-
+            videoRunning = true;
 
             //captureVideo = new VideoCaptureDevice(VideoDevices[cb_videoDevicesList.SelectedIndex].MonikerString);
             //captureVideo.NewFrame += new NewFrameEventHandler(captureVideo_newFrame);
@@ -118,8 +119,9 @@ namespace VideoConferencing
         //
         private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
-            camCapture.Stop();
-            camCapture.Dispose();
+              camCapture.Stop();
+              camCapture.Dispose();
+            
         }
 
         private void bt_panel_tabPage_Menu_Contacts_View_Click(object sender, EventArgs e)
