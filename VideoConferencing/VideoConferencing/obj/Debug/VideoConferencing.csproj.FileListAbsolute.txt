@@ -15,3 +15,12 @@ C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\A
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.Video.dll
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\DirectX.Capture.dll
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\DShowNET.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\AxInterop.VideoChatReceiverLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\AxInterop.VideoChatSenderLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\Interop.VideoChatReceiverLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\bin\Debug\Interop.VideoChatSenderLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\Interop.VideoChatReceiverLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\Interop.VideoChatSenderLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\AxInterop.VideoChatReceiverLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\AxInterop.VideoChatSenderLib.dll
+C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.csproj.ResolveComReference.cache

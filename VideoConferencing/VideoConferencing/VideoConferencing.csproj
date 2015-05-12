@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,6 +44,12 @@
     </Reference>
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\DLL Folder\AFroge\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.VideoChatReceiverLib">
+      <HintPath>..\DLL Folder\Viscom\AxInterop.VideoChatReceiverLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.VideoChatSenderLib">
+      <HintPath>..\DLL Folder\Viscom\AxInterop.VideoChatSenderLib.dll</HintPath>
     </Reference>
     <Reference Include="DirectX.Capture">
       <HintPath>..\DLL Folder\DirectX\DirectX.Capture.dll</HintPath>
@@ -125,6 +132,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Login_Form_web.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxVideoChatReceiverLib">
+      <Guid>{E1A9DB8F-E712-4705-8A66-4CD75B534552}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxVideoChatSenderLib">
+      <Guid>{F9D8E1C3-CDFE-4136-ABF0-36FF5BCA7F83}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VideoChatReceiverLib">
+      <Guid>{E1A9DB8F-E712-4705-8A66-4CD75B534552}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VideoChatSenderLib">
+      <Guid>{F9D8E1C3-CDFE-4136-ABF0-36FF5BCA7F83}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

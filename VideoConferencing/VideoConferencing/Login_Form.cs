@@ -37,7 +37,8 @@ namespace VideoConferencing
             if (comboBox_Login_UserName.Text=="user1"&& textBox_Login_Pass.Text=="1234")
             {
                 MessageBox.Show("Signed In As : user 1");
-                Main_Form Main_Form = new Main_Form();
+                string userName = "user1";
+                Main_Form Main_Form = new Main_Form(userName);
                 this.Hide();
                 Main_Form.ShowDialog();
                 this.Close();
@@ -46,7 +47,8 @@ namespace VideoConferencing
             else if (comboBox_Login_UserName.Text=="user2"&& textBox_Login_Pass.Text=="1234")
             {
                 MessageBox.Show("Signed In As : user 2");
-                Main_Form Main_Form = new Main_Form();
+                string userName = "user2";
+                Main_Form Main_Form = new Main_Form(userName);
                 this.Hide();
                 Main_Form.ShowDialog();
                 this.Close();
