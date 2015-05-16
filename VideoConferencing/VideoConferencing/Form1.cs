@@ -49,6 +49,11 @@ namespace VideoConferencing
         int cameraDeviceNo;
         private bool videoRunning;
         string userName;
+        bool _sendingConnectedAudioStream;
+        bool _sendingConnectedVideoStream;
+        bool _recevingConnectedAudioStream;
+        bool _recevingConnectedVideoStream;
+
         public Main_Form(string userName)
         {
             InitializeComponent();
@@ -56,8 +61,10 @@ namespace VideoConferencing
             
             // assign the send axVideo panel to the hostVideo object
             hostVideo = axVideoChatSender1;
-
             remoteVideo = axVideoChatReceiver1;
+
+            _sendingConnectedAudioStream = false;
+            _sendingConnectedAudioStream = false;
         }
 
         /// <summary>
@@ -194,6 +201,7 @@ namespace VideoConferencing
         {
             if (userName == "user1")
             {
+
                 remoteVideo.Listen("127.0.0.1", 1245);
             }
             else
@@ -207,6 +215,7 @@ namespace VideoConferencing
         //
         private void remoteVideoSteaming()
         {
+            _recevingConnectedVideoStream = true;
             remoteVideo.ReceiveVideoStream = true;
         }
 
@@ -215,6 +224,7 @@ namespace VideoConferencing
         //
         private void remoteAudioStreaming()
         {
+            _recevingConnectedAudioStream = true;
             remoteVideo.ReceiveAudioStream = true;
         }
 
@@ -280,6 +290,7 @@ namespace VideoConferencing
         //
         private void hostStartVideoStreaming()
         {
+            _sendingConnectedVideoStream = true;
             hostVideo.SendVideoStream = true;
         }
 
@@ -288,6 +299,7 @@ namespace VideoConferencing
         //
         private void hostStartAudioStreaming()
         {
+            _sendingConnectedAudioStream = true;
             hostVideo.SendAudioStream = true;
         }
 
@@ -296,10 +308,17 @@ namespace VideoConferencing
         //
         private void getRemoteIPConfiguration()
         {
+
             if (userName == "user1")
+            {
+
                 hostVideo.Connect("127.0.0.1", 1234);
+            }
             else
+            {
                 hostVideo.Connect("127.0.0.1", 1245);
+            }
+
         }
 
 
@@ -337,7 +356,17 @@ namespace VideoConferencing
         //
         private void hostCamDevice()
         {
-            hostVideo.VideoDevice = 0;
+            if (userName == "user1")
+                hostVideo.VideoDevice = 0;
+            else
+            {
+                int videdDeviceCount = hostVideo.GetVideoDeviceCount();
+                //Console.WriteLine(arr);
+                //MessageBox.Show(arr.ToString());
+                //Console.ReadLine();
+                hostVideo.VideoDevice = 0;
+            }
+
         }
 
 
@@ -386,6 +415,74 @@ namespace VideoConferencing
             this.Hide();
             Login_Form Login_Form = new Login_Form();
             Login_Form.ShowDialog();
+        }
+
+        //
+        // stop button to stop the video call
+        //
+        private void bt_stop_call_Menu_Click(object sender, EventArgs e)
+        {
+            if(userName== "user1")
+            {
+                stopPeer1HostVideoCall();
+                stopPeer1RemoteVideoCall();
+            }
+            else
+            {
+                stopPeer2HostVideoCall();
+                stopPeer2RemoteVideoCall();
+            }
+        }
+
+        private void stopPeer2RemoteVideoCall()
+        {
+            stopHostRecevingPacket();
+        }
+
+        private void stopPeer2HostVideoCall()
+        {
+            stopHostSendingPacket();
+        }
+
+        //
+        // Method to stop the receving video call of Peer 1
+        //
+        private void stopPeer1RemoteVideoCall()
+        {
+            stopHostRecevingPacket();
+        }
+
+
+        //
+        // Method to stop the receving part video call of Peer 1
+        //
+        private void stopHostRecevingPacket()
+        {
+            if(_recevingConnectedVideoStream && _recevingConnectedAudioStream)
+            {
+                remoteVideo.Disconnect();
+            }
+        }
+
+
+        //
+        // Method to stop the sending part video call of Peer 1
+        //
+        private void stopPeer1HostVideoCall()
+        {
+            stopHostSendingPacket();
+        }
+
+        //
+        // to stop host call of peer 1
+        //
+        private void stopHostSendingPacket()
+        {
+            if (_sendingConnectedVideoStream && _sendingConnectedAudioStream)
+            {
+                hostVideo.Disconnect();
+            }
+            
         }
     }
 }
