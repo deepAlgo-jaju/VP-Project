@@ -24,3 +24,24 @@ C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\I
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\AxInterop.VideoChatReceiverLib.dll
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\AxInterop.VideoChatSenderLib.dll
 C:\Users\JaJu\Desktop\VP Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.csproj.ResolveComReference.cache
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\VideoConferencing.exe.config
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.exe
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.pdb
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.csprojResolveAssemblyReference.cache
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Main_Form.resources
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Login_Form.resources
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Peer1.resources
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.PracticeForm.resources
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.Properties.Resources.resources
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.csproj.GenerateResource.Cache
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\VideoConferencing.exe
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\VideoConferencing.pdb
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.Controls.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.Video.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\DirectX.Capture.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\DShowNET.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.P2P.resources
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\Voice.dll
+C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\WebCam_Capture.dll

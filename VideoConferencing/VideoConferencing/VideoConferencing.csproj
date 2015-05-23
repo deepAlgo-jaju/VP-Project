@@ -45,12 +45,6 @@
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\DLL Folder\AFroge\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="AxInterop.VideoChatReceiverLib">
-      <HintPath>..\DLL Folder\Viscom\AxInterop.VideoChatReceiverLib.dll</HintPath>
-    </Reference>
-    <Reference Include="AxInterop.VideoChatSenderLib">
-      <HintPath>..\DLL Folder\Viscom\AxInterop.VideoChatSenderLib.dll</HintPath>
-    </Reference>
     <Reference Include="DirectX.Capture">
       <HintPath>..\DLL Folder\DirectX\DirectX.Capture.dll</HintPath>
     </Reference>
@@ -67,19 +61,39 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Voice, Version=1.0.2270.28420, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\VP Project\VideoConferencing\VideoConferencing\bin\Debug\Voice.dll</HintPath>
+    </Reference>
+    <Reference Include="WebCam_Capture, Version=1.0.2292.23514, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\VP Project\VideoConferencing\VideoConferencing\bin\Debug\WebCam_Capture.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Login_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login_Form.Designer.cs">
       <DependentUpon>Login_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P2P.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P2P.Designer.cs">
+      <DependentUpon>P2P.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Peer1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Peer1.Designer.cs">
+      <DependentUpon>Peer1.cs</DependentUpon>
     </Compile>
     <Compile Include="PracticeForm.cs">
       <SubType>Form</SubType>
@@ -89,11 +103,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P2P.resx">
+      <DependentUpon>P2P.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Peer1.resx">
+      <DependentUpon>Peer1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PracticeForm.resx">
       <DependentUpon>PracticeForm.cs</DependentUpon>
@@ -132,42 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Login_Form_web.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="AxVideoChatReceiverLib">
-      <Guid>{E1A9DB8F-E712-4705-8A66-4CD75B534552}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="AxVideoChatSenderLib">
-      <Guid>{F9D8E1C3-CDFE-4136-ABF0-36FF5BCA7F83}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="VideoChatReceiverLib">
-      <Guid>{E1A9DB8F-E712-4705-8A66-4CD75B534552}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="VideoChatSenderLib">
-      <Guid>{F9D8E1C3-CDFE-4136-ABF0-36FF5BCA7F83}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
