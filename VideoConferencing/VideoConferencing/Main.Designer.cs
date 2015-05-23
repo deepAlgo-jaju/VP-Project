@@ -75,9 +75,9 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pnl_user2 = new System.Windows.Forms.Panel();
+            this.bt_receiving = new System.Windows.Forms.Button();
             this.WebCamCapture = new WebCam_Capture.WebCamCapture();
             this.Capturing = new System.Windows.Forms.Timer(this.components);
-            this.bt_receiving = new System.Windows.Forms.Button();
             this.panel_VideoChat.SuspendLayout();
             this.tc_contactsDetails.SuspendLayout();
             this.tabPage_Menu.SuspendLayout();
@@ -399,7 +399,6 @@
             this.pnl_user1.Name = "pnl_user1";
             this.pnl_user1.Size = new System.Drawing.Size(445, 253);
             this.pnl_user1.TabIndex = 2;
-            this.pnl_user1.Visible = false;
             // 
             // label8
             // 
@@ -538,7 +537,16 @@
             this.pnl_user2.Name = "pnl_user2";
             this.pnl_user2.Size = new System.Drawing.Size(445, 221);
             this.pnl_user2.TabIndex = 3;
-            this.pnl_user2.Visible = false;
+            // 
+            // bt_receiving
+            // 
+            this.bt_receiving.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_receiving.Location = new System.Drawing.Point(244, 72);
+            this.bt_receiving.Name = "bt_receiving";
+            this.bt_receiving.Size = new System.Drawing.Size(109, 24);
+            this.bt_receiving.TabIndex = 42;
+            this.bt_receiving.Text = "Start Receiving";
+            this.bt_receiving.Click += new System.EventHandler(this.bt_receiving_Click);
             // 
             // WebCamCapture
             // 
@@ -555,16 +563,6 @@
             // Capturing
             // 
             this.Capturing.Tick += new System.EventHandler(this.Capturing_Tick);
-            // 
-            // bt_receiving
-            // 
-            this.bt_receiving.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_receiving.Location = new System.Drawing.Point(244, 72);
-            this.bt_receiving.Name = "bt_receiving";
-            this.bt_receiving.Size = new System.Drawing.Size(109, 24);
-            this.bt_receiving.TabIndex = 42;
-            this.bt_receiving.Text = "Start Receiving";
-            this.bt_receiving.Click += new System.EventHandler(this.bt_receiving_Click);
             // 
             // Main_Form
             // 

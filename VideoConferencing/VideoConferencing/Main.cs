@@ -574,13 +574,27 @@ namespace VideoConferencing
         #region Voice_In()
         private void Voice_In()
         {
-            byte[] br;
-            r.Bind(new IPEndPoint(IPAddress.Any, int.Parse(text_Voice_SendingPort.Text)));
-            while (true)
+            if (userName == "user1")
             {
-                br = new byte[16384];
-                r.Receive(br);
-                m_Fifo.Write(br, 0, br.Length);
+                byte[] br;
+                r.Bind(new IPEndPoint(IPAddress.Any, 7000));
+                while (true)
+                {
+                    br = new byte[16384];
+                    r.Receive(br);
+                    m_Fifo.Write(br, 0, br.Length);
+                }
+            }
+            else if (userName == "user2")
+            {
+                byte[] br;
+                r.Bind(new IPEndPoint(IPAddress.Any, 5000));
+                while (true)
+                {
+                    br = new byte[16384];
+                    r.Receive(br);
+                    m_Fifo.Write(br, 0, br.Length);
+                }
             }
         }
         #endregion
@@ -588,16 +602,38 @@ namespace VideoConferencing
 
         private void Voice_Out(IntPtr data, int size)
         {
-            try
+            if (userName == "user1")
             {
-                //for Recorder
-                if (m_RecBuffer == null || m_RecBuffer.Length < size)
-                    m_RecBuffer = new byte[size];
-                System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
-                //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
-                r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), int.Parse(text_Voice_SendingPort.Text)));
+                try
+                {
+                    //for Recorder
+                    if (m_RecBuffer == null || m_RecBuffer.Length < size)
+                        m_RecBuffer = new byte[size];
+                    System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+                    //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+                    r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 5000));
+                }
+                catch (Exception e)
+                {
+
+                }
             }
-            catch (Exception) { }
+            else if (userName == "user2")
+            {
+                try
+                {
+                    //for Recorder
+                    if (m_RecBuffer == null || m_RecBuffer.Length < size)
+                        m_RecBuffer = new byte[size];
+                    System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+                    //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+                    r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 7000));
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
         }
 
 
@@ -641,11 +677,13 @@ namespace VideoConferencing
         {
             if (connected == false)
             {
-                t.Start();
+                t = new Thread(new ThreadStart(Start));
+                //t.Start();
                 connected = true;
             }
 
-            Start();
+            else
+                Start();
         }
 
         private void Start()
@@ -701,22 +739,48 @@ namespace VideoConferencing
 
         private void Start_Sending_Video_Conference(string remote_IP, int port_number)
         {
-            try
+            if (userName == "user1")
             {
-                ms = new MemoryStream();// Store it in Binary Array as Stream
-                pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                byte[] arrImage = ms.GetBuffer();
-                myclient = new TcpClient(remote_IP, port_number);//Connecting with server
-                myns = myclient.GetStream();
-                mysw = new BinaryWriter(myns);
-                mysw.Write(arrImage);//send the stream to above address
-                ms.Close();
-                mysw.Close();
-                myns.Close();
-                myclient.Close();
+                port_number = 6000;
+                try
+                {
+                    ms = new MemoryStream();// Store it in Binary Array as Stream
+                    pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] arrImage = ms.GetBuffer();
+                    myclient = new TcpClient(remote_IP, port_number);//Connecting with server
+                    myns = myclient.GetStream();
+                    mysw = new BinaryWriter(myns);
+                    mysw.Write(arrImage);//send the stream to above address
+                    ms.Close();
+                    mysw.Close();
+                    myns.Close();
+                    myclient.Close();
+                }
+                catch (Exception)
+                {
+                }
             }
-            catch (Exception)
+            else if (userName == "user2")
             {
+                port_number = 8000;
+                try
+                {
+                    ms = new MemoryStream();// Store it in Binary Array as Stream
+                    pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] arrImage = ms.GetBuffer();
+                    myclient = new TcpClient(remote_IP, port_number);//Connecting with server
+                    myns = myclient.GetStream();
+                    mysw = new BinaryWriter(myns);
+                    mysw.Write(arrImage);//send the stream to above address
+                    ms.Close();
+                    mysw.Close();
+                    myns.Close();
+                    myclient.Close();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
 
@@ -724,23 +788,53 @@ namespace VideoConferencing
         {
             try
             {
-
-                // Open The Port
-                mytcpl = new TcpListener(int.Parse(text_Camera_send_port.Text));
-                mytcpl.Start();                      // Start Listening on That Port
-
-                while (true)
+                if (userName == "user1")
                 {
-                    try
+                    // Open The Port
+                    mytcpl = new TcpListener(8000);
+                    mytcpl.Start();                      // Start Listening on That Port
+
+                    while (true)
                     {
-                        mysocket = mytcpl.AcceptSocket();        // Accept Any Request From Client and Start a Session
-                        ns = new NetworkStream(mysocket);    // Receives The Binary Data From Port
-                        pictureBox2.Image = Image.FromStream(ns);
+                        try
+                        {
+                            mysocket = mytcpl.AcceptSocket();        // Accept Any Request From Client and Start a Session
+                            ns = new NetworkStream(mysocket);    // Receives The Binary Data From Port
+                            pictureBox2.Image = Image.FromStream(ns);
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                        }
                     }
-                    catch (Exception) { }
                 }
+
+                else if (userName == "user2")
+                {
+                    // Open The Port
+                    mytcpl = new TcpListener(6000);
+                    mytcpl.Start();                      // Start Listening on That Port
+
+                    while (true)
+                    {
+                        try
+                        {
+                            mysocket = mytcpl.AcceptSocket();        // Accept Any Request From Client and Start a Session
+                            ns = new NetworkStream(mysocket);    // Receives The Binary Data From Port
+                            pictureBox2.Image = Image.FromStream(ns);
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                        }
+                    }
+                }
+
             }
-            catch (Exception) { }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            } 
         }
 
 
