@@ -476,10 +476,11 @@ namespace VideoConferencing
             //panel_CallMenu.Visible = true;
             if (userName == "user1")
             {
-                Peer1 Peer1 = new Peer1();
-                this.Hide();
-                Peer1.ShowDialog();
-                this.Show();
+                pnl_user1.Visible = true;
+            }
+            else if(userName == "user2")
+            {
+                pnl_user2.Visible = true;
             }
         }
 
@@ -606,15 +607,7 @@ namespace VideoConferencing
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
-            // Voice Thread
-            r = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            t = new Thread(new ThreadStart(Voice_In));
-            t.IsBackground = true;
-
-            // Video Thread
-            myth = new Thread(new System.Threading.ThreadStart(Start_Receiving_Video_Conference)); // Start Thread Session
-            myth.IsBackground = true;
-            myth.Start(); // Start Receiveing Camera
+            
         }
 
         private void bt_stop_Click(object sender, EventArgs e)
@@ -756,6 +749,19 @@ namespace VideoConferencing
         private void WebCamCapture_ImageCaptured_1(object source, WebCam_Capture.WebcamEventArgs e)
         {
             this.pictureBox1.Image = e.WebCamImage;
+        }
+
+        private void bt_receiving_Click(object sender, EventArgs e)
+        {
+            // Voice Thread
+            r = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            t = new Thread(new ThreadStart(Voice_In));
+            t.IsBackground = true;
+
+            // Video Thread
+            myth = new Thread(new System.Threading.ThreadStart(Start_Receiving_Video_Conference)); // Start Thread Session
+            myth.IsBackground = true;
+            myth.Start(); // Start Receiveing Camera
         }
     }
 }
