@@ -33,6 +33,9 @@ using AxVideoChatReceiverLib;
 using DShowNET;
 using DirectX.Capture;
 using System.Drawing;
+using System.IO;
+using System.Net.Sockets;
+using System.Net;
 #endregion
 
 namespace VideoConferencing
@@ -53,6 +56,12 @@ namespace VideoConferencing
         bool _sendingConnectedVideoStream;
         bool _recevingConnectedAudioStream;
         bool _recevingConnectedVideoStream;
+        int SendingVideoPort;
+        int RecievingVideoPort;
+        int SendingControlsPort;
+        int RecievingControlsPort;
+        int SendingVoicePort;
+        int RecievingVoicePort;
 
         public Main_Form(string userName)
         {
@@ -65,6 +74,27 @@ namespace VideoConferencing
 
             _sendingConnectedAudioStream = false;
             _sendingConnectedAudioStream = false;
+
+            if (userName == "user1")
+            {
+                this.Text = "Peer1";
+                SendingVideoPort = 50000;
+                RecievingVideoPort = 50001;
+                SendingControlsPort = 50002;
+                RecievingControlsPort = 50003;
+                SendingVoicePort = 50006;
+                RecievingVoicePort = 50007;
+            }
+            else if (userName == "user2")
+            {
+                this.Text = "Peer2";
+                SendingVideoPort = 50001;
+                RecievingVideoPort = 50000;
+                SendingControlsPort = 50003;
+                RecievingControlsPort = 50002;
+                SendingVoicePort = 50007;
+                RecievingVoicePort = 50006;
+            }
         }
 
         /// <summary>
@@ -292,6 +322,15 @@ namespace VideoConferencing
         {
             _sendingConnectedVideoStream = true;
             hostVideo.SendVideoStream = true;
+
+            //MemoryStream ms = new MemoryStream();
+
+            //Socket _sendToUser2 = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            //IPEndPoint sending_end_point = new IPEndPoint(IPAddress.Parse("127.0.0.1"), SendingVideoPort);
+
+            //pictureBoxPeer1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+            //hostVideo.
         }
 
         //
@@ -357,7 +396,10 @@ namespace VideoConferencing
         private void hostCamDevice()
         {
             if (userName == "user1")
+            {
                 hostVideo.VideoDevice = 0;
+                
+            }
             else
             {
                 int videdDeviceCount = hostVideo.GetVideoDeviceCount();
@@ -483,6 +525,13 @@ namespace VideoConferencing
                 hostVideo.Disconnect();
             }
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            short num = hostVideo.GetVideoDeviceCount();
+            string name = hostVideo.GetVideoDeviceName(1);
+            MessageBox.Show("Video Device No : " + num + "\n Name of device : " + name);
         }
     }
 }
