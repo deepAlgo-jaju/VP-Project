@@ -71,8 +71,8 @@ namespace VideoConferencing
         private WaveOutPlayer m_Player;
         private WaveInRecorder m_Recorder;
         private FifoStream m_Fifo = new FifoStream();
-        private Socket r;
-        private Thread t;
+        private Socket socket;
+        private Thread voiceth;
         private bool connected = false;
         private byte[] m_PlayBuffer;
         private byte[] m_RecBuffer;
@@ -80,7 +80,7 @@ namespace VideoConferencing
         MemoryStream ms;
         NetworkStream myns;
         BinaryWriter mysw;
-        Thread myth;
+        Thread videoth;
         TcpListener mytcpl;
         NetworkStream ns;
         Socket mysocket;
@@ -574,66 +574,66 @@ namespace VideoConferencing
         #region Voice_In()
         private void Voice_In()
         {
-            if (userName == "user1")
-            {
-                byte[] br;
-                r.Bind(new IPEndPoint(IPAddress.Any, 7000));
-                while (true)
-                {
-                    br = new byte[16384];
-                    r.Receive(br);
-                    m_Fifo.Write(br, 0, br.Length);
-                }
-            }
-            else if (userName == "user2")
-            {
-                byte[] br;
-                r.Bind(new IPEndPoint(IPAddress.Any, 5000));
-                while (true)
-                {
-                    br = new byte[16384];
-                    r.Receive(br);
-                    m_Fifo.Write(br, 0, br.Length);
-                }
-            }
+            //if (userName == "user1")
+            //{
+            //    byte[] br;
+            //    socket.Bind(new IPEndPoint(IPAddress.Any, 7000));
+            //    while (true)
+            //    {
+            //        br = new byte[16384];
+            //        socket.Receive(br);
+            //        m_Fifo.Write(br, 0, br.Length);
+            //    }
+            //}
+            //else if (userName == "user2")
+            //{
+            //    byte[] br;
+            //    socket.Bind(new IPEndPoint(IPAddress.Any, 5000));
+            //    while (true)
+            //    {
+            //        br = new byte[16384];
+            //        socket.Receive(br);
+            //        m_Fifo.Write(br, 0, br.Length);
+            //    }
+            //}
         }
         #endregion
         #region Voice_Out()
 
         private void Voice_Out(IntPtr data, int size)
         {
-            if (userName == "user1")
-            {
-                try
-                {
-                    //for Recorder
-                    if (m_RecBuffer == null || m_RecBuffer.Length < size)
-                        m_RecBuffer = new byte[size];
-                    System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
-                    //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
-                    r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 5000));
-                }
-                catch (Exception e)
-                {
+            //if (userName == "user1")
+            //{
+            //    try
+            //    {
+            //        //for Recorder
+            //        if (m_RecBuffer == null || m_RecBuffer.Length < size)
+            //            m_RecBuffer = new byte[size];
+            //        System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+            //        //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+            //        socket.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 5000));
+            //    }
+            //    catch (Exception e)
+            //    {
 
-                }
-            }
-            else if (userName == "user2")
-            {
-                try
-                {
-                    //for Recorder
-                    if (m_RecBuffer == null || m_RecBuffer.Length < size)
-                        m_RecBuffer = new byte[size];
-                    System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
-                    //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
-                    r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 7000));
-                }
-                catch (Exception e)
-                {
+            //    }
+            //}
+            //else if (userName == "user2")
+            //{
+            //    try
+            //    {
+            //        //for Recorder
+            //        if (m_RecBuffer == null || m_RecBuffer.Length < size)
+            //            m_RecBuffer = new byte[size];
+            //        System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+            //        //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+            //        socket.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 7000));
+            //    }
+            //    catch (Exception e)
+            //    {
 
-                }
-            }
+            //    }
+            //}
         }
 
 
@@ -652,33 +652,34 @@ namespace VideoConferencing
         }
         private void Stop()
         {
-            if (m_Player != null)
-                try
-                {
-                    m_Player.Dispose();
-                }
-                finally
-                {
-                    m_Player = null;
-                }
-            if (m_Recorder != null)
-                try
-                {
-                    m_Recorder.Dispose();
-                }
-                finally
-                {
-                    m_Recorder = null;
-                }
-            m_Fifo.Flush(); // clear all pending data
+            //if (m_Player != null)
+            //    try
+            //    {
+            //        m_Player.Dispose();
+            //    }
+            //    finally
+            //    {
+            //        m_Player = null;
+            //    }
+            //if (m_Recorder != null)
+            //    try
+            //    {
+            //        m_Recorder.Dispose();
+            //    }
+            //    finally
+            //    {
+            //        m_Recorder = null;
+            //    }
+            //m_Fifo.Flush(); // clear all pending data
         }
 
         private void bt_startVoice_Click(object sender, EventArgs e)
         {
             if (connected == false)
             {
-                t = new Thread(new ThreadStart(Start));
+                //voiceth = new Thread(new ThreadStart(Start));
                 //t.Start();
+                voiceth.Start();
                 connected = true;
             }
 
@@ -688,31 +689,31 @@ namespace VideoConferencing
 
         private void Start()
         {
-            Stop();
-            try
-            {
-                WaveFormat fmt = new WaveFormat(22050, 8, 1);
-                m_Player = new WaveOutPlayer(0, fmt, 16384, 3, new BufferFillEventHandler(Filler));
-                m_Recorder = new WaveInRecorder(-1, fmt, 16384, 3, new BufferDoneEventHandler(Voice_Out));
-            }
-            catch
-            {
-                Stop();
-                throw;
-            }
+            //Stop();
+            //try
+            //{
+            //    WaveFormat fmt = new WaveFormat(22050, 8, 1);
+            //    m_Player = new WaveOutPlayer(0, fmt, 16384, 3, new BufferFillEventHandler(Filler));
+            //    m_Recorder = new WaveInRecorder(-1, fmt, 16384, 3, new BufferDoneEventHandler(Voice_Out));
+            //}
+            //catch
+            //{
+            //    Stop();
+            //    throw;
+            //}
         }
 
         private void Filler(IntPtr data, int size)
         {
-            if (m_PlayBuffer == null || m_PlayBuffer.Length < size)
-                m_PlayBuffer = new byte[size];
-            if (m_Fifo.Length >= size)
-                m_Fifo.Read(m_PlayBuffer, 0, size);
-            else
-                for (int i = 0; i < m_PlayBuffer.Length; i++)
-                    m_PlayBuffer[i] = 0;
-            System.Runtime.InteropServices.Marshal.Copy(m_PlayBuffer, 0, data, size);
-            // m_Fifo ==> m_PlayBuffer==> data ==> Speakers
+            //if (m_PlayBuffer == null || m_PlayBuffer.Length < size)
+            //    m_PlayBuffer = new byte[size];
+            //if (m_Fifo.Length >= size)
+            //    m_Fifo.Read(m_PlayBuffer, 0, size);
+            //else
+            //    for (int i = 0; i < m_PlayBuffer.Length; i++)
+            //        m_PlayBuffer[i] = 0;
+            //System.Runtime.InteropServices.Marshal.Copy(m_PlayBuffer, 0, data, size);
+            //// m_Fifo ==> m_PlayBuffer==> data ==> Speakers
         }
 
         private void bt_stopCamera_Click(object sender, EventArgs e)
@@ -730,7 +731,7 @@ namespace VideoConferencing
 
         private void WebCamCapture_ImageCaptured(object source, WebCam_Capture.WebcamEventArgs e)
         {
-            this.pictureBox1.Image = e.WebCamImage;
+            this.pb_host.Image = e.WebCamImage;
         }
         private void Capturing_Tick(object sender, System.EventArgs e)
         {
@@ -745,7 +746,7 @@ namespace VideoConferencing
                 try
                 {
                     ms = new MemoryStream();// Store it in Binary Array as Stream
-                    pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    pb_host.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] arrImage = ms.GetBuffer();
                     myclient = new TcpClient(remote_IP, port_number);//Connecting with server
                     myns = myclient.GetStream();
@@ -766,7 +767,7 @@ namespace VideoConferencing
                 try
                 {
                     ms = new MemoryStream();// Store it in Binary Array as Stream
-                    pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    pb_host.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] arrImage = ms.GetBuffer();
                     myclient = new TcpClient(remote_IP, port_number);//Connecting with server
                     myns = myclient.GetStream();
@@ -800,7 +801,7 @@ namespace VideoConferencing
                         {
                             mysocket = mytcpl.AcceptSocket();        // Accept Any Request From Client and Start a Session
                             ns = new NetworkStream(mysocket);    // Receives The Binary Data From Port
-                            pictureBox2.Image = Image.FromStream(ns);
+                            pb_remote.Image = Image.FromStream(ns);
                         }
                         catch (Exception e)
                         {
@@ -821,7 +822,7 @@ namespace VideoConferencing
                         {
                             mysocket = mytcpl.AcceptSocket();        // Accept Any Request From Client and Start a Session
                             ns = new NetworkStream(mysocket);    // Receives The Binary Data From Port
-                            pictureBox2.Image = Image.FromStream(ns);
+                            pb_remote.Image = Image.FromStream(ns);
                         }
                         catch (Exception e)
                         {
@@ -838,24 +839,26 @@ namespace VideoConferencing
         }
 
 
-        #endregion
-
         private void WebCamCapture_ImageCaptured_1(object source, WebCam_Capture.WebcamEventArgs e)
         {
-            this.pictureBox1.Image = e.WebCamImage;
+            this.pb_host.Image = e.WebCamImage;
         }
 
         private void bt_receiving_Click(object sender, EventArgs e)
         {
-            // Voice Thread
-            r = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            t = new Thread(new ThreadStart(Voice_In));
-            t.IsBackground = true;
+            //// Voice Thread
+            //socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            //voiceth = new Thread(new ThreadStart(Voice_In));
+            //voiceth.IsBackground = true;
 
             // Video Thread
-            myth = new Thread(new System.Threading.ThreadStart(Start_Receiving_Video_Conference)); // Start Thread Session
-            myth.IsBackground = true;
-            myth.Start(); // Start Receiveing Camera
+            videoth = new Thread(new System.Threading.ThreadStart(Start_Receiving_Video_Conference)); // Start Thread Session
+            videoth.IsBackground = true;
+            videoth.Start(); // Start Receiveing Camera
         }
+
+        #endregion
+
+        #region For Peer2Peer voice chat
     }
 }

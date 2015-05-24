@@ -71,8 +71,8 @@
             this.text_Voice_SendingPort = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pb_host = new System.Windows.Forms.PictureBox();
+            this.pb_remote = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pnl_user2 = new System.Windows.Forms.Panel();
             this.bt_receiving = new System.Windows.Forms.Button();
@@ -89,8 +89,8 @@
             this.menuStrip2.SuspendLayout();
             this.panel_CallMenu.SuspendLayout();
             this.pnl_user1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_host)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_remote)).BeginInit();
             this.pnl_user2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -394,7 +394,7 @@
             this.pnl_user1.Controls.Add(this.text_Voice_SendingPort);
             this.pnl_user1.Controls.Add(this.label6);
             this.pnl_user1.Controls.Add(this.label4);
-            this.pnl_user1.Controls.Add(this.pictureBox1);
+            this.pnl_user1.Controls.Add(this.pb_host);
             this.pnl_user1.Location = new System.Drawing.Point(230, 6);
             this.pnl_user1.Name = "pnl_user1";
             this.pnl_user1.Size = new System.Drawing.Size(445, 253);
@@ -500,25 +500,25 @@
             this.label4.TabIndex = 20;
             this.label4.Text = "My Camera";
             // 
-            // pictureBox1
+            // pb_host
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DimGray;
-            this.pictureBox1.Location = new System.Drawing.Point(27, 73);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 160);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            this.pb_host.BackColor = System.Drawing.Color.DimGray;
+            this.pb_host.Location = new System.Drawing.Point(27, 73);
+            this.pb_host.Name = "pb_host";
+            this.pb_host.Size = new System.Drawing.Size(160, 160);
+            this.pb_host.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_host.TabIndex = 19;
+            this.pb_host.TabStop = false;
             // 
-            // pictureBox2
+            // pb_remote
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.DimGray;
-            this.pictureBox2.Location = new System.Drawing.Point(26, 37);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(160, 160);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 30;
-            this.pictureBox2.TabStop = false;
+            this.pb_remote.BackColor = System.Drawing.Color.DimGray;
+            this.pb_remote.Location = new System.Drawing.Point(26, 37);
+            this.pb_remote.Name = "pb_remote";
+            this.pb_remote.Size = new System.Drawing.Size(160, 160);
+            this.pb_remote.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_remote.TabIndex = 30;
+            this.pb_remote.TabStop = false;
             // 
             // label5
             // 
@@ -532,7 +532,7 @@
             // 
             this.pnl_user2.Controls.Add(this.bt_receiving);
             this.pnl_user2.Controls.Add(this.label5);
-            this.pnl_user2.Controls.Add(this.pictureBox2);
+            this.pnl_user2.Controls.Add(this.pb_remote);
             this.pnl_user2.Location = new System.Drawing.Point(230, 253);
             this.pnl_user2.Name = "pnl_user2";
             this.pnl_user2.Size = new System.Drawing.Size(445, 221);
@@ -546,6 +546,7 @@
             this.bt_receiving.Size = new System.Drawing.Size(109, 24);
             this.bt_receiving.TabIndex = 42;
             this.bt_receiving.Text = "Start Receiving";
+            this.bt_receiving.Visible = false;
             this.bt_receiving.Click += new System.EventHandler(this.bt_receiving_Click);
             // 
             // WebCamCapture
@@ -601,8 +602,8 @@
             this.panel_CallMenu.ResumeLayout(false);
             this.pnl_user1.ResumeLayout(false);
             this.pnl_user1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_host)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_remote)).EndInit();
             this.pnl_user2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -641,9 +642,9 @@
         private System.Windows.Forms.Button bt_stop_call_Menu;
         private System.Windows.Forms.Panel pnl_user1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pb_host;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pb_remote;
         private System.Windows.Forms.TextBox text_Camera_send_port;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox text_Voice_SendingPort;
