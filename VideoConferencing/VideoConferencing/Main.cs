@@ -30,14 +30,16 @@ using AForge.Video.DirectShow;
 /// <summary>
 /// Listed By Muhammah Junaid
 /// </summary>
-using DShowNET;
-using DirectX.Capture;
+
 using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
 using System.Net;
 using Voice;
 using System.Threading;
+using DirectX.Capture;
+using DirectX;
+using DShowNET;
 #endregion
 
 namespace VideoConferencing
@@ -50,8 +52,8 @@ namespace VideoConferencing
 
         //AxVideoChatSender hostVideo = null;
         //AxVideoChatReceiver remoteVideo = null;
-        Capture camCapture = null;
-        Filters filterDevice = null;
+        //Capture camCapture = null;
+        //Filters filterDevice = null;
         int cameraDeviceNo;
         private bool videoRunning;
         string userName;
@@ -67,15 +69,15 @@ namespace VideoConferencing
         int RecievingVoicePort;
         #endregion
 
-        #region New variables
-        private WaveOutPlayer m_Player;
-        private WaveInRecorder m_Recorder;
-        private FifoStream m_Fifo = new FifoStream();
+        #region New variables For WebCam_Capture Library Use
+        //private WaveOutPlayer m_Player;
+        //private WaveInRecorder m_Recorder;
+       // private FifoStream m_Fifo = new FifoStream();
         private Socket socket;
         private Thread voiceth;
         private bool connected = false;
-        private byte[] m_PlayBuffer;
-        private byte[] m_RecBuffer;
+        //private byte[] m_PlayBuffer;
+        //private byte[] m_RecBuffer;
         TcpClient myclient;
         MemoryStream ms;
         NetworkStream myns;
@@ -91,33 +93,47 @@ namespace VideoConferencing
         {
             InitializeComponent();
             this.userName = userName;
-            
+
+            capture = new Capture(filters.VideoInputDevices[0], filters.AudioInputDevices[0]);
             // assign the send axVideo panel to the hostVideo object
             //hostVideo = axVideoChatSender1;
             //remoteVideo = axVideoChatReceiver1;
 
-            _sendingConnectedAudioStream = false;
-            _sendingConnectedAudioStream = false;
+            //_sendingConnectedAudioStream = false;
+            //_sendingConnectedAudioStream = false;
+
+            //if (userName == "user1")
+            //{
+            //    this.Text = "Peer1";
+            //    SendingVideoPort = 50000;
+            //    RecievingVideoPort = 50001;
+            //    SendingControlsPort = 50002;
+            //    RecievingControlsPort = 50003;
+            //    SendingVoicePort = 50006;
+            //    RecievingVoicePort = 50007;
+            //}
+            //else if (userName == "user2")
+            //{
+            //    this.Text = "Peer2";
+            //    SendingVideoPort = 50001;
+            //    RecievingVideoPort = 50000;
+            //    SendingControlsPort = 50003;
+            //    RecievingControlsPort = 50002;
+            //    SendingVoicePort = 50007;
+            //    RecievingVoicePort = 50006;
+            //}
 
             if (userName == "user1")
             {
-                this.Text = "Peer1";
-                SendingVideoPort = 50000;
-                RecievingVideoPort = 50001;
-                SendingControlsPort = 50002;
-                RecievingControlsPort = 50003;
-                SendingVoicePort = 50006;
-                RecievingVoicePort = 50007;
+                //r = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                //t = new Thread(new ThreadStart(Voice_In));
+                PeerIP_TXT.Text = "169.254.170.108";
             }
             else if (userName == "user2")
             {
-                this.Text = "Peer2";
-                SendingVideoPort = 50001;
-                RecievingVideoPort = 50000;
-                SendingControlsPort = 50003;
-                RecievingControlsPort = 50002;
-                SendingVoicePort = 50007;
-                RecievingVoicePort = 50006;
+                //r = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                //t = new Thread(new ThreadStart(Voice_In));
+                PeerIP_TXT.Text = "169.254.98.87";
             }
         }
 
@@ -476,11 +492,13 @@ namespace VideoConferencing
             //panel_CallMenu.Visible = true;
             if (userName == "user1")
             {
-                pnl_user1.Visible = true;
+                //pnl_user1.Visible = true;
+                pnl_directXCall.Visible = true;
             }
             else if(userName == "user2")
             {
-                pnl_user2.Visible = true;
+                //pnl_user2.Visible = true;
+                pnl_directXCall.Visible = true;
             }
         }
 
@@ -571,150 +589,129 @@ namespace VideoConferencing
         #region Webcam_capture and Voice DLL
 
 
-        #region Voice_In()
-        private void Voice_In()
-        {
-            //if (userName == "user1")
-            //{
-            //    byte[] br;
-            //    socket.Bind(new IPEndPoint(IPAddress.Any, 7000));
-            //    while (true)
-            //    {
-            //        br = new byte[16384];
-            //        socket.Receive(br);
-            //        m_Fifo.Write(br, 0, br.Length);
-            //    }
-            //}
-            //else if (userName == "user2")
-            //{
-            //    byte[] br;
-            //    socket.Bind(new IPEndPoint(IPAddress.Any, 5000));
-            //    while (true)
-            //    {
-            //        br = new byte[16384];
-            //        socket.Receive(br);
-            //        m_Fifo.Write(br, 0, br.Length);
-            //    }
-            //}
-        }
-        #endregion
-        #region Voice_Out()
+        //#region Voice_In()
+        //private void Voice_In()
+        //{
+        //    //if (userName == "user1")
+        //    //{
+        //    //    byte[] br;
+        //    //    socket.Bind(new IPEndPoint(IPAddress.Any, 7000));
+        //    //    while (true)
+        //    //    {
+        //    //        br = new byte[16384];
+        //    //        socket.Receive(br);
+        //    //        m_Fifo.Write(br, 0, br.Length);
+        //    //    }
+        //    //}
+        //    //else if (userName == "user2")
+        //    //{
+        //    //    byte[] br;
+        //    //    socket.Bind(new IPEndPoint(IPAddress.Any, 5000));
+        //    //    while (true)
+        //    //    {
+        //    //        br = new byte[16384];
+        //    //        socket.Receive(br);
+        //    //        m_Fifo.Write(br, 0, br.Length);
+        //    //    }
+        //    //}
+        //}
+        //#endregion
+        //#region Voice_Out()
 
-        private void Voice_Out(IntPtr data, int size)
-        {
-            //if (userName == "user1")
-            //{
-            //    try
-            //    {
-            //        //for Recorder
-            //        if (m_RecBuffer == null || m_RecBuffer.Length < size)
-            //            m_RecBuffer = new byte[size];
-            //        System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
-            //        //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
-            //        socket.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 5000));
-            //    }
-            //    catch (Exception e)
-            //    {
+        //private void Voice_Out(IntPtr data, int size)
+        //{
+        //    //if (userName == "user1")
+        //    //{
+        //    //    try
+        //    //    {
+        //    //        //for Recorder
+        //    //        if (m_RecBuffer == null || m_RecBuffer.Length < size)
+        //    //            m_RecBuffer = new byte[size];
+        //    //        System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+        //    //        //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+        //    //        socket.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 5000));
+        //    //    }
+        //    //    catch (Exception e)
+        //    //    {
 
-            //    }
-            //}
-            //else if (userName == "user2")
-            //{
-            //    try
-            //    {
-            //        //for Recorder
-            //        if (m_RecBuffer == null || m_RecBuffer.Length < size)
-            //            m_RecBuffer = new byte[size];
-            //        System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
-            //        //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
-            //        socket.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 7000));
-            //    }
-            //    catch (Exception e)
-            //    {
+        //    //    }
+        //    //}
+        //    //else if (userName == "user2")
+        //    //{
+        //    //    try
+        //    //    {
+        //    //        //for Recorder
+        //    //        if (m_RecBuffer == null || m_RecBuffer.Length < size)
+        //    //            m_RecBuffer = new byte[size];
+        //    //        System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+        //    //        //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+        //    //        socket.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 7000));
+        //    //    }
+        //    //    catch (Exception e)
+        //    //    {
 
-            //    }
-            //}
-        }
+        //    //    }
+        //    //}
+        //}
 
 
-        #endregion
+        //#endregion
 
         
+      
+        //private void Stop()
+        //{
+        //    //if (m_Player != null)
+        //    //    try
+        //    //    {
+        //    //        m_Player.Dispose();
+        //    //    }
+        //    //    finally
+        //    //    {
+        //    //        m_Player = null;
+        //    //    }
+        //    //if (m_Recorder != null)
+        //    //    try
+        //    //    {
+        //    //        m_Recorder.Dispose();
+        //    //    }
+        //    //    finally
+        //    //    {
+        //    //        m_Recorder = null;
+        //    //    }
+        //    //m_Fifo.Flush(); // clear all pending data
+        //}
 
-        private void Main_Form_Load(object sender, EventArgs e)
-        {
-            
-        }
+       
 
-        private void bt_stop_Click(object sender, EventArgs e)
-        {
-            Stop();
-        }
-        private void Stop()
-        {
-            //if (m_Player != null)
-            //    try
-            //    {
-            //        m_Player.Dispose();
-            //    }
-            //    finally
-            //    {
-            //        m_Player = null;
-            //    }
-            //if (m_Recorder != null)
-            //    try
-            //    {
-            //        m_Recorder.Dispose();
-            //    }
-            //    finally
-            //    {
-            //        m_Recorder = null;
-            //    }
-            //m_Fifo.Flush(); // clear all pending data
-        }
+        //private void Start()
+        //{
+        //    //Stop();
+        //    //try
+        //    //{
+        //    //    WaveFormat fmt = new WaveFormat(22050, 8, 1);
+        //    //    m_Player = new WaveOutPlayer(0, fmt, 16384, 3, new BufferFillEventHandler(Filler));
+        //    //    m_Recorder = new WaveInRecorder(-1, fmt, 16384, 3, new BufferDoneEventHandler(Voice_Out));
+        //    //}
+        //    //catch
+        //    //{
+        //    //    Stop();
+        //    //    throw;
+        //    //}
+        //}
 
-        private void bt_startVoice_Click(object sender, EventArgs e)
-        {
-            if (connected == false)
-            {
-                //voiceth = new Thread(new ThreadStart(Start));
-                //t.Start();
-                voiceth.Start();
-                connected = true;
-            }
-
-            else
-                Start();
-        }
-
-        private void Start()
-        {
-            //Stop();
-            //try
-            //{
-            //    WaveFormat fmt = new WaveFormat(22050, 8, 1);
-            //    m_Player = new WaveOutPlayer(0, fmt, 16384, 3, new BufferFillEventHandler(Filler));
-            //    m_Recorder = new WaveInRecorder(-1, fmt, 16384, 3, new BufferDoneEventHandler(Voice_Out));
-            //}
-            //catch
-            //{
-            //    Stop();
-            //    throw;
-            //}
-        }
-
-        private void Filler(IntPtr data, int size)
-        {
-            //if (m_PlayBuffer == null || m_PlayBuffer.Length < size)
-            //    m_PlayBuffer = new byte[size];
-            //if (m_Fifo.Length >= size)
-            //    m_Fifo.Read(m_PlayBuffer, 0, size);
-            //else
-            //    for (int i = 0; i < m_PlayBuffer.Length; i++)
-            //        m_PlayBuffer[i] = 0;
-            //System.Runtime.InteropServices.Marshal.Copy(m_PlayBuffer, 0, data, size);
-            //// m_Fifo ==> m_PlayBuffer==> data ==> Speakers
-        }
+        //private void Filler(IntPtr data, int size)
+        //{
+        //    //if (m_PlayBuffer == null || m_PlayBuffer.Length < size)
+        //    //    m_PlayBuffer = new byte[size];
+        //    //if (m_Fifo.Length >= size)
+        //    //    m_Fifo.Read(m_PlayBuffer, 0, size);
+        //    //else
+        //    //    for (int i = 0; i < m_PlayBuffer.Length; i++)
+        //    //        m_PlayBuffer[i] = 0;
+        //    //System.Runtime.InteropServices.Marshal.Copy(m_PlayBuffer, 0, data, size);
+        //    //// m_Fifo ==> m_PlayBuffer==> data ==> Speakers
+        //}
 
         private void bt_stopCamera_Click(object sender, EventArgs e)
         {
@@ -859,6 +856,305 @@ namespace VideoConferencing
 
         #endregion
 
-        #region For Peer2Peer voice chat
+        #region New Variables for Voice Library Use
+
+        private Socket r;
+        private Thread t;
+        private WaveOutPlayer m_Player;
+        private WaveInRecorder m_Recorder;
+        private FifoStream m_Fifo = new FifoStream();
+
+        private byte[] m_PlayBuffer;
+        private byte[] m_RecBuffer;
+
+        #endregion
+       
+        #region
+
+        #region Voice_In()
+        private void Voice_In()
+        {
+            if (userName == "user1")
+            {
+                byte[] br;
+                r.Bind(new IPEndPoint(IPAddress.Any, 7000));
+                while (true)
+                {
+                    br = new byte[16384];
+                    r.Receive(br);
+                    m_Fifo.Write(br, 0, br.Length);
+                }
+            }
+            else if (userName == "user2")
+            {
+                byte[] br;
+                r.Bind(new IPEndPoint(IPAddress.Any, 5000));
+                while (true)
+                {
+                    br = new byte[16384];
+                    r.Receive(br);
+                    m_Fifo.Write(br, 0, br.Length);
+                }
+            }
+        }
+        #endregion
+        #region Voice_Out()
+
+        private void Voice_Out(IntPtr data, int size)
+        {
+            if (userName == "user1")
+            {
+                //for Recorder
+                if (m_RecBuffer == null || m_RecBuffer.Length < size)
+                    m_RecBuffer = new byte[size];
+                System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+                //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+                r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 5000));
+            }
+            else if (userName == "user2")
+            {
+                //for Recorder
+                if (m_RecBuffer == null || m_RecBuffer.Length < size)
+                    m_RecBuffer = new byte[size];
+                System.Runtime.InteropServices.Marshal.Copy(data, m_RecBuffer, 0, size);
+                //Microphone ==> data ==> m_RecBuffer ==> m_Fifo
+                r.SendTo(m_RecBuffer, new IPEndPoint(IPAddress.Parse(text_IP.Text), 7000));
+            }
+        }
+
+        #endregion
+
+
+        private void Start()
+        {
+            Stop();
+            try
+            {
+                WaveFormat fmt = new WaveFormat(44100, 16, 2);
+                m_Player = new WaveOutPlayer(-1, fmt, 16384, 3, new BufferFillEventHandler(Filler));
+                m_Recorder = new WaveInRecorder(-1, fmt, 16384, 3, new BufferDoneEventHandler(Voice_Out));
+            }
+            catch
+            {
+                Stop();
+                throw;
+            }
+        }
+
+        private void Stop()
+        {
+            if (m_Player != null)
+                try
+                {
+                    m_Player.Dispose();
+                }
+                finally
+                {
+                    m_Player = null;
+                }
+            if (m_Recorder != null)
+                try
+                {
+                    m_Recorder.Dispose();
+                }
+                finally
+                {
+                    m_Recorder = null;
+                }
+            m_Fifo.Flush(); // clear all pending data
+        }
+
+        private void Filler(IntPtr data, int size)
+        {
+            if (m_PlayBuffer == null || m_PlayBuffer.Length < size)
+                m_PlayBuffer = new byte[size];
+            if (m_Fifo.Length >= size)
+                m_Fifo.Read(m_PlayBuffer, 0, size);
+            else
+                for (int i = 0; i < m_PlayBuffer.Length; i++)
+                    m_PlayBuffer[i] = 0;
+            System.Runtime.InteropServices.Marshal.Copy(m_PlayBuffer, 0, data, size);
+            // m_Fifo ==> m_PlayBuffer==> data ==> Speakers
+        }
+
+        #endregion
+
+        #region webcam
+        private void bt_startVoice_Click(object sender, EventArgs e)
+        {
+            if (connected == false)
+            {
+                t.Start();
+                connected = true;
+            }
+
+            Start();
+        }
+
+        private void bt_stop_Click(object sender, EventArgs e)
+        {
+            Stop();
+        }
+
+        private void bt_ReceivingAudio_Click(object sender, EventArgs e)
+        {
+            
+        }
+        #endregion
+
+        #region Variables for Direct X 
+
+        Thread ServerThread;
+        private Capture capture = null;
+        private Filters filters = new Filters();
+        Socket server_sock;
+        bool stoped = false;
+
+        bool isSending = false;
+
+
+        #endregion
+
+
+
+        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //t.Abort();
+            //r.Close();
+            //Stop();
+
+            try
+            {
+                isSending = false;
+                server_sock.Close();
+                ServerThread.Abort();
+            }
+            catch (Exception) { }
+
+            try
+            {
+                capture.PreviewWindow = null;
+                if (capture != null)
+                    capture.Stop();
+            }
+            catch (Exception) { }
+            stoped = true;
+        }
+
+        private void CaptureDone(System.Drawing.Bitmap e)
+        {
+            try
+            {
+                this.pictureBox.Image = e;
+                //MemoryStream ms = new MemoryStream();
+                //pictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //byte[] buffer = ms.GetBuffer();
+                if (isSending)
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(SendVideoBuffer), pictureBox.Image);
+            }
+            catch (Exception) { }
+        }
+
+        void SendVideoBuffer(object bufferIn)
+        {
+            try
+            {
+                TcpClient tcp = new TcpClient(PeerIP_TXT.Text, 6000);
+                NetworkStream ns = tcp.GetStream();
+                Image buffer = (Image)bufferIn;
+                buffer.Save(ns, System.Drawing.Imaging.ImageFormat.Jpeg);
+                ns.Close();
+                tcp.Close();
+            }
+            catch (Exception) { }
+        }
+
+        private void bt_endCall_Click(object sender, EventArgs e)
+        {
+            pnl_coverRemoteVideo.Visible = true;
+            try
+            {
+                isSending = false;
+                server_sock.Close();
+                ServerThread.Abort();
+            }
+            catch (Exception) { }
+
+            try
+            {
+                capture.PreviewWindow = null;
+                if (capture != null)
+                    capture.Stop();
+            }
+            catch (Exception) { }
+            stoped = true;
+        }
+
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+            ServerThread = new Thread(new ThreadStart(server));
+            ServerThread.IsBackground = true;
+            ServerThread.Start();
+
+            if (capture != null)
+            {
+                capture.FrameRate = 15;
+                capture.FrameSize = new Size(320, 240);
+            }
+        }
+
+        void server()
+        {
+            try
+            {
+                server_sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                server_sock.Bind(new IPEndPoint(IPAddress.Any, 6000));
+                server_sock.Listen(-1);
+
+                while (true)
+                {
+                    try
+                    {
+                        Socket new_socket = server_sock.Accept();
+                        NetworkStream ns = new NetworkStream(new_socket);
+                        pictureBox_Remote.Image = Image.FromStream(ns);
+                        ns.Close();
+                        new_socket.Close();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+            catch (Exception) { }
+
+        }
+
+        private void bt_startCall_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Start Capturing
+
+                if (capture != null)
+                {
+                    if (capture.PreviewWindow != panelVideo)
+                    {
+                        capture.PreviewWindow = panelVideo;
+                    }
+                    capture.FrameEvent2 += new Capture.HeFrame(CaptureDone);
+                    capture.GrapImg();
+
+                    PeerIP_TXT.Enabled = false;
+                    bt_startCall.Enabled = false;
+                    
+                    isSending = true;
+
+                }
+
+
+            }
+            catch (Exception) { }
+        }
     }
 }

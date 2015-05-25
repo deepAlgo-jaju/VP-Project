@@ -40,8 +40,4 @@ C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Deb
 C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.dll
 C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.Video.DirectShow.dll
 C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\AForge.Video.dll
-C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\DirectX.Capture.dll
-C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\DShowNET.dll
 C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\obj\Debug\VideoConferencing.P2P.resources
-C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\Voice.dll
-C:\Users\JaJu\Desktop\asd\VP-Project\VideoConferencing\VideoConferencing\bin\Debug\WebCam_Capture.dll

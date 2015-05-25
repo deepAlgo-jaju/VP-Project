@@ -45,11 +45,13 @@
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\DLL Folder\AFroge\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="DirectX.Capture">
-      <HintPath>..\DLL Folder\DirectX\DirectX.Capture.dll</HintPath>
+    <Reference Include="DirectX.Capture, Version=1.0.5623.23408, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DirectX.Capture.dll</HintPath>
     </Reference>
-    <Reference Include="DShowNET">
-      <HintPath>..\DLL Folder\DirectX\DShowNET.dll</HintPath>
+    <Reference Include="DShowNET, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DShowNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,11 +65,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="Voice, Version=1.0.2270.28420, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\VP Project\VideoConferencing\VideoConferencing\bin\Debug\Voice.dll</HintPath>
+      <HintPath>bin\Debug\Voice.dll</HintPath>
     </Reference>
     <Reference Include="WebCam_Capture, Version=1.0.2292.23514, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\VP Project\VideoConferencing\VideoConferencing\bin\Debug\WebCam_Capture.dll</HintPath>
+      <HintPath>bin\Debug\WebCam_Capture.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
