@@ -82,14 +82,18 @@
             this.WebCamCapture = new WebCam_Capture.WebCamCapture();
             this.Capturing = new System.Windows.Forms.Timer(this.components);
             this.pnl_directXCall = new System.Windows.Forms.Panel();
-            this.bt_startCall = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.panelVideo = new System.Windows.Forms.Panel();
-            this.pictureBox_Remote = new System.Windows.Forms.PictureBox();
-            this.bt_endCall = new System.Windows.Forms.Button();
+            this.pnl_coverRemoteVideo = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.PeerIP_TXT = new System.Windows.Forms.TextBox();
-            this.pnl_coverRemoteVideo = new System.Windows.Forms.Panel();
+            this.bt_endCall = new System.Windows.Forms.Button();
+            this.pictureBox_Remote = new System.Windows.Forms.PictureBox();
+            this.panelVideo = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.bt_startCall = new System.Windows.Forms.Button();
+            this.pnl_audioPeer2 = new System.Windows.Forms.Panel();
+            this.pnl_audioPeer1 = new System.Windows.Forms.Panel();
+            this.bt_peer1_endAudio = new System.Windows.Forms.Button();
+            this.bt_peer1_startAudio = new System.Windows.Forms.Button();
             this.panel_VideoChat.SuspendLayout();
             this.tc_contactsDetails.SuspendLayout();
             this.tabPage_Menu.SuspendLayout();
@@ -107,8 +111,9 @@
             this.pnl_user2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pnl_directXCall.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Remote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.pnl_audioPeer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_VideoChat
@@ -328,7 +333,7 @@
             this.tabPage_Help.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Help.Name = "tabPage_Help";
             this.tabPage_Help.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Help.Size = new System.Drawing.Size(200, 446);
+            this.tabPage_Help.Size = new System.Drawing.Size(200, 474);
             this.tabPage_Help.TabIndex = 1;
             this.tabPage_Help.Text = "Help";
             this.tabPage_Help.UseVisualStyleBackColor = true;
@@ -618,6 +623,8 @@
             // 
             // pnl_directXCall
             // 
+            this.pnl_directXCall.Controls.Add(this.pnl_audioPeer1);
+            this.pnl_directXCall.Controls.Add(this.pnl_audioPeer2);
             this.pnl_directXCall.Controls.Add(this.pnl_coverRemoteVideo);
             this.pnl_directXCall.Controls.Add(this.label9);
             this.pnl_directXCall.Controls.Add(this.PeerIP_TXT);
@@ -631,59 +638,14 @@
             this.pnl_directXCall.Size = new System.Drawing.Size(451, 472);
             this.pnl_directXCall.TabIndex = 4;
             // 
-            // bt_startCall
+            // pnl_coverRemoteVideo
             // 
-            this.bt_startCall.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_startCall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.bt_startCall.Location = new System.Drawing.Point(281, 397);
-            this.bt_startCall.Name = "bt_startCall";
-            this.bt_startCall.Size = new System.Drawing.Size(162, 31);
-            this.bt_startCall.TabIndex = 18;
-            this.bt_startCall.Text = "Start Call";
-            this.bt_startCall.UseVisualStyleBackColor = true;
-            this.bt_startCall.Click += new System.EventHandler(this.bt_startCall_Click);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(285, 239);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(156, 136);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox.TabIndex = 19;
-            this.pictureBox.TabStop = false;
-            // 
-            // panelVideo
-            // 
-            this.panelVideo.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panelVideo.Location = new System.Drawing.Point(281, 239);
-            this.panelVideo.Name = "panelVideo";
-            this.panelVideo.Size = new System.Drawing.Size(163, 136);
-            this.panelVideo.TabIndex = 21;
-            // 
-            // pictureBox_Remote
-            // 
-            this.pictureBox_Remote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.pictureBox_Remote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_Remote.Location = new System.Drawing.Point(10, 6);
-            this.pictureBox_Remote.Name = "pictureBox_Remote";
-            this.pictureBox_Remote.Size = new System.Drawing.Size(434, 227);
-            this.pictureBox_Remote.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Remote.TabIndex = 22;
-            this.pictureBox_Remote.TabStop = false;
-            // 
-            // bt_endCall
-            // 
-            this.bt_endCall.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_endCall.ForeColor = System.Drawing.Color.Maroon;
-            this.bt_endCall.Location = new System.Drawing.Point(281, 433);
-            this.bt_endCall.Name = "bt_endCall";
-            this.bt_endCall.Size = new System.Drawing.Size(162, 29);
-            this.bt_endCall.TabIndex = 23;
-            this.bt_endCall.Text = "End Call";
-            this.bt_endCall.UseVisualStyleBackColor = true;
-            this.bt_endCall.Click += new System.EventHandler(this.bt_endCall_Click);
+            this.pnl_coverRemoteVideo.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnl_coverRemoteVideo.Location = new System.Drawing.Point(8, 5);
+            this.pnl_coverRemoteVideo.Name = "pnl_coverRemoteVideo";
+            this.pnl_coverRemoteVideo.Size = new System.Drawing.Size(436, 228);
+            this.pnl_coverRemoteVideo.TabIndex = 26;
+            this.pnl_coverRemoteVideo.Visible = false;
             // 
             // label9
             // 
@@ -702,14 +664,99 @@
             this.PeerIP_TXT.Size = new System.Drawing.Size(249, 23);
             this.PeerIP_TXT.TabIndex = 24;
             // 
-            // pnl_coverRemoteVideo
+            // bt_endCall
             // 
-            this.pnl_coverRemoteVideo.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pnl_coverRemoteVideo.Location = new System.Drawing.Point(8, 5);
-            this.pnl_coverRemoteVideo.Name = "pnl_coverRemoteVideo";
-            this.pnl_coverRemoteVideo.Size = new System.Drawing.Size(436, 228);
-            this.pnl_coverRemoteVideo.TabIndex = 26;
-            this.pnl_coverRemoteVideo.Visible = false;
+            this.bt_endCall.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_endCall.ForeColor = System.Drawing.Color.Maroon;
+            this.bt_endCall.Location = new System.Drawing.Point(281, 433);
+            this.bt_endCall.Name = "bt_endCall";
+            this.bt_endCall.Size = new System.Drawing.Size(162, 29);
+            this.bt_endCall.TabIndex = 23;
+            this.bt_endCall.Text = "End Call";
+            this.bt_endCall.UseVisualStyleBackColor = true;
+            this.bt_endCall.Click += new System.EventHandler(this.bt_endCall_Click);
+            // 
+            // pictureBox_Remote
+            // 
+            this.pictureBox_Remote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pictureBox_Remote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox_Remote.Location = new System.Drawing.Point(10, 6);
+            this.pictureBox_Remote.Name = "pictureBox_Remote";
+            this.pictureBox_Remote.Size = new System.Drawing.Size(434, 227);
+            this.pictureBox_Remote.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Remote.TabIndex = 22;
+            this.pictureBox_Remote.TabStop = false;
+            // 
+            // panelVideo
+            // 
+            this.panelVideo.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelVideo.Location = new System.Drawing.Point(281, 239);
+            this.panelVideo.Name = "panelVideo";
+            this.panelVideo.Size = new System.Drawing.Size(163, 136);
+            this.panelVideo.TabIndex = 21;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox.Location = new System.Drawing.Point(285, 239);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(156, 136);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 19;
+            this.pictureBox.TabStop = false;
+            // 
+            // bt_startCall
+            // 
+            this.bt_startCall.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_startCall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bt_startCall.Location = new System.Drawing.Point(281, 397);
+            this.bt_startCall.Name = "bt_startCall";
+            this.bt_startCall.Size = new System.Drawing.Size(162, 31);
+            this.bt_startCall.TabIndex = 18;
+            this.bt_startCall.Text = "Start Call";
+            this.bt_startCall.UseVisualStyleBackColor = true;
+            this.bt_startCall.Click += new System.EventHandler(this.bt_startCall_Click);
+            // 
+            // pnl_audioPeer2
+            // 
+            this.pnl_audioPeer2.Location = new System.Drawing.Point(30, 268);
+            this.pnl_audioPeer2.Name = "pnl_audioPeer2";
+            this.pnl_audioPeer2.Size = new System.Drawing.Size(200, 100);
+            this.pnl_audioPeer2.TabIndex = 27;
+            // 
+            // pnl_audioPeer1
+            // 
+            this.pnl_audioPeer1.Controls.Add(this.bt_peer1_endAudio);
+            this.pnl_audioPeer1.Controls.Add(this.bt_peer1_startAudio);
+            this.pnl_audioPeer1.Location = new System.Drawing.Point(0, 381);
+            this.pnl_audioPeer1.Name = "pnl_audioPeer1";
+            this.pnl_audioPeer1.Size = new System.Drawing.Size(281, 91);
+            this.pnl_audioPeer1.TabIndex = 0;
+            // 
+            // bt_peer1_endAudio
+            // 
+            this.bt_peer1_endAudio.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_peer1_endAudio.ForeColor = System.Drawing.Color.Maroon;
+            this.bt_peer1_endAudio.Location = new System.Drawing.Point(8, 53);
+            this.bt_peer1_endAudio.Name = "bt_peer1_endAudio";
+            this.bt_peer1_endAudio.Size = new System.Drawing.Size(162, 29);
+            this.bt_peer1_endAudio.TabIndex = 29;
+            this.bt_peer1_endAudio.Text = "End Audio Call";
+            this.bt_peer1_endAudio.UseVisualStyleBackColor = true;
+            this.bt_peer1_endAudio.Click += new System.EventHandler(this.bt_peer1_endAudio_Click);
+            // 
+            // bt_peer1_startAudio
+            // 
+            this.bt_peer1_startAudio.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_peer1_startAudio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.bt_peer1_startAudio.Location = new System.Drawing.Point(8, 17);
+            this.bt_peer1_startAudio.Name = "bt_peer1_startAudio";
+            this.bt_peer1_startAudio.Size = new System.Drawing.Size(162, 31);
+            this.bt_peer1_startAudio.TabIndex = 28;
+            this.bt_peer1_startAudio.Text = "Start Audio Call";
+            this.bt_peer1_startAudio.UseVisualStyleBackColor = true;
+            this.bt_peer1_startAudio.Click += new System.EventHandler(this.bt_peer1_startAudio_Click);
             // 
             // Main_Form
             // 
@@ -757,8 +804,9 @@
             this.groupBox1.ResumeLayout(false);
             this.pnl_directXCall.ResumeLayout(false);
             this.pnl_directXCall.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Remote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.pnl_audioPeer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -825,6 +873,10 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button bt_startCall;
         private System.Windows.Forms.Panel pnl_coverRemoteVideo;
+        private System.Windows.Forms.Panel pnl_audioPeer1;
+        private System.Windows.Forms.Button bt_peer1_endAudio;
+        private System.Windows.Forms.Button bt_peer1_startAudio;
+        private System.Windows.Forms.Panel pnl_audioPeer2;
     }
 }
 
